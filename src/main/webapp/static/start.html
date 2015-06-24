@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<form action="/oauth/authorize?client_id=" method="post">
+	<label for="clientId">client_id</label>
+	<input id="clientId" type="text" value="my-trusted-client">
+	<br>
+	Grant type:
+	<label for="token">Token</label>
+	<input id="token" type="radio" name="response_type" value="token" checked/>
+	<label for="code">Code</label>
+	<input id="code" type="radio" name="response_type" value="code"/>
+	<br>
+	Scope:
+	<label for="read">Read</label>
+	<input id="read" type="radio" name="scope" value="read" checked/>
+	<label for="write">Write</label>
+	<input id="write" type="radio" name="scope" value="write"/>
+	<br>
+	<input type="submit" value="POST">
+</form>
+</body>
+</html>
