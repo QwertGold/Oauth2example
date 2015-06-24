@@ -10,7 +10,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 /**
- * Created by tobias on 03/06/15.
+ * Web specific configuration.
+ *
+ * @author Klaus Groenbaek
+ *         Created 09/03/15.
  */
 @EnableWebMvc
 @Configuration
@@ -28,7 +31,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return viewResolver;
     }
 
-    // equivalents for <mvc:resources/> tags
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("/static/").setCachePeriod(31556926);

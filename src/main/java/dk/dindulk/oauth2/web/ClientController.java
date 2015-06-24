@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -26,7 +25,9 @@ public class ClientController {
         String code = params.get("code");
         if (code != null) {
             // the response was a code, we not need to exchange this for an access_token
-            return new ModelAndView("clientCode");
+            ModelAndView mv = new ModelAndView("clientCode");
+            mv.addObject("code", code);
+            return mv;
         } else {
             // the redirect contains the token in a fragment. Since fragments only exists in the browser the client
             // can access it in the backend. instead the client returns JavaScript which can extract it

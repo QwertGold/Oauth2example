@@ -5,9 +5,9 @@
 	<title></title>
 </head>
 <body>
-<form action="/oauth/authorize?client_id=" method="post">
+<form action="/oauth/authorize" method="post">
 	<label for="clientId">client_id</label>
-	<input id="clientId" type="text" value="my-trusted-client">
+	<input id="clientId" type="text" name="client_id" value="my-trusted-client">
 	<br>
 	Grant type:
 	<label for="token">Token</label>

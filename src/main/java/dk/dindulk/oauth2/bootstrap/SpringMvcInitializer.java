@@ -5,7 +5,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 /**
  * Web initializer to bootstrap Spring
  *
- * @author Tobias Tobiasen
+ * @author Klaus Groenbaek
  */
 public class SpringMvcInitializer
         extends AbstractAnnotationConfigDispatcherServletInitializer

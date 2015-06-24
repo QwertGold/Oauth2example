@@ -1,5 +1,10 @@
 # Oauth2example
-Spring Oauth2 example
+Example of the Oauth authentication server.
 
-<h3>This example is not complete yet!</h3>
-I just needed a place to check it in.
+Warning: example is not complete yet!
+
+Implicit flow example is: complete
+
+Authorization Code grant example: need to implement call to /oauth/token with basic auth
+Resource server
+
