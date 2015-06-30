@@ -6,7 +6,7 @@
 <body>
 <script>
   if(window.location.hash) {
-    alert("access_token: " +window.location.hash)
+    alert("access_token: " + window.location.hash)
   } else {
     alert("There was no #fragment.")
   }

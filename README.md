@@ -1,10 +1,7 @@
 # Oauth2example
 Example of the Oauth authentication server.
 
-Warning: example is not complete yet!
+This example is a standalone OAuth authentication server example. It does not have a resource server.
+It supports both implicit and code flow.
 
-Implicit flow example is: complete
-
-Authorization Code grant example: need to implement call to /oauth/token with basic auth
-Resource server
-
+Todo: Refresh token logic, revoke token logic.
