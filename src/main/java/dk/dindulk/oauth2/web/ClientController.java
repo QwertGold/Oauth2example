@@ -1,11 +1,11 @@
 package dk.dindulk.oauth2.web;
 
-import java.util.Arrays;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -37,7 +37,7 @@ public class ClientController {
     @Autowired
     ObjectMapper objectMapper;
 
-    // for testing grand to token
+    // for testing grant to token
     @RequestMapping(method = RequestMethod.GET, value = "/redirect")
     public ModelAndView redirect(@RequestParam() Map<String, String> params) {
 
@@ -65,16 +65,10 @@ public class ClientController {
 
         // If the client is Spring one may use OAuth2RestTemplate, here the raw template is used here to show what happens
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(request.getScheme()).append("://")
-                .append(request.getServerName()).append(":").append(request.getServerPort()).append(request.getContextPath());
-
-        sb.append("/oauth/token");
-
         String clientId = params.get(OAuth2Utils.CLIENT_ID);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setAccept(Lists.newArrayList(MediaType.APPLICATION_JSON));
         // basic auth with blank password (unless you set the secret() field when you build the client in OAuthConfiguration)
         headers.set("Authorization", "Basic " + new String(Base64.encode((clientId + ":").getBytes())));
 
@@ -86,7 +80,8 @@ public class ClientController {
 
         HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(parameters, headers);
         RestTemplate template = new RestTemplate();
-        ResponseEntity<DefaultOAuth2AccessToken> responseEntity = template.postForEntity(sb.toString(), entity, DefaultOAuth2AccessToken.class);
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/oauth/token";
+        ResponseEntity<DefaultOAuth2AccessToken> responseEntity = template.postForEntity(url, entity, DefaultOAuth2AccessToken.class);
         DefaultOAuth2AccessToken body = responseEntity.getBody();
         String json = objectMapper.writer().withDefaultPrettyPrinter().writeValueAsString(body);
         ModelAndView mv = new ModelAndView("token");
