@@ -46,13 +46,23 @@ configurations.all {
     }
 
     tasks.withType(FindBugs) {
-            reports {
-                xml.enabled = false;
-                html.enabled = true;
-            }
+        reports {
+            xml.enabled = false;
+            html.enabled = true;
         }
+    }
 
 }
+
+task printEnvironment   {
+    outputs.upToDateWhen { false }
+    println ''
+    System.getenv().each{ k, v -> println "${k}:${v}" }
+    println ''
+
+}
+
+build.dependsOn printEnvironment
 
 
 
