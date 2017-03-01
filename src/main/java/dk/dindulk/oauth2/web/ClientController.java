@@ -1,5 +1,6 @@
 package dk.dindulk.oauth2.web;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -70,7 +71,7 @@ public class ClientController {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Lists.newArrayList(MediaType.APPLICATION_JSON));
         // basic auth with blank password (unless you set the secret() field when you build the client in OAuthConfiguration)
-        headers.set("Authorization", "Basic " + new String(Base64.encode((clientId + ":").getBytes())));
+        headers.set("Authorization", "Basic " + new String(Base64.encode((clientId + ":").getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8));
 
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
 
