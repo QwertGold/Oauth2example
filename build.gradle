@@ -54,15 +54,4 @@ configurations.all {
 
 }
 
-task printEnvironment   {
-    outputs.upToDateWhen { false }
-    println ''
-    System.getenv().each{ k, v -> println "${k}:${v}" }
-    println ''
-
-}
-
-build.dependsOn printEnvironment
-
-
 
